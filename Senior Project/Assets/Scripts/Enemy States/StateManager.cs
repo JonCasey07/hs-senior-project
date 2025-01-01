@@ -11,7 +11,7 @@ public class StateManager : MonoBehaviour
     public float patrolDuration = 3f;
     private Vector2 startPos;
     private Vector2 endPos;
-    private bool movingRight = true;
+    public bool movingRight = true;
     private float elapsedTime;
 
     private bool chaseRan = false;
@@ -23,7 +23,6 @@ public class StateManager : MonoBehaviour
     public float attackInterval = 1.5f;
     public float attackLength = .1f;
     public GameObject sword;
-
 
     // Update is called once per frame
     void Update()

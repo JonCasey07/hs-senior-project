@@ -2,27 +2,12 @@ using UnityEngine;
 
 public class ActivateAttack : MonoBehaviour
 {
-    /*
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            chaseState.isInAttackRange = true;
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            chaseState.isInAttackRange = false;
-            AttackState.hasLeftAttackRange = true;
-        }
-    }
-    */
-
     public Vector2 detectionSize = new Vector2(5f, 5f); // Size of the rectangle
+    public Vector2 wallDetectionSize = new Vector2(2f, 1.5f);
+    private Vector2 wallDetectionOffset = new Vector2(1f, 0f);
+    private Vector2 wallDetectionCenter;
     public LayerMask targetLayer;
+    public LayerMask wallLayer;
     public bool isInRange = false;
     public Transform target;
     public float chaseSpeed = 1f;
@@ -31,11 +16,14 @@ public class ActivateAttack : MonoBehaviour
 
     public void Chase()
     {
+        wallDetectionCenter = new Vector2(transform.position.x + wallDetectionOffset.x, transform.position.y);
+
         // Check if there are any objects within the detection rectangle
         Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position, detectionSize, 0f, targetLayer);
+        Collider2D[] wallHits = Physics2D.OverlapBoxAll(wallDetectionCenter, wallDetectionSize, 0f, wallLayer);
 
         // Update isInRange flag
-        isInRange = hits.Length > 0;
+        isInRange = (hits.Length > 0 && wallHits.Length != 0);
 
         // Run script only if the object is outside the hit range
         if (!isInRange)
@@ -62,10 +50,12 @@ public class ActivateAttack : MonoBehaviour
             if (newPosition.x > transform.position.x)
             {
                 FaceRight();
+                wallDetectionCenter = new Vector2(transform.position.x + wallDetectionOffset.x, transform.position.y);
             }
             if (newPosition.x < transform.position.x)
             {
                 FaceLeft();
+                wallDetectionCenter = new Vector2(transform.position.x - wallDetectionOffset.x, transform.position.y);
             }
         }
     }
@@ -75,6 +65,9 @@ public class ActivateAttack : MonoBehaviour
         // Draw the detection rectangle in the editor for visualization
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(transform.position, detectionSize);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(wallDetectionCenter, wallDetectionSize);
     }
 
     void FaceRight()
