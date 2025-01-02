@@ -52,12 +52,10 @@ public class PlayerDetection : MonoBehaviour
 
             if (wallHit.collider != null || groundHit.collider != null)
             {
-                Debug.Log("Player is behind a wall: " + wallHit.collider.name);
                 // Player is behind a wall
             }
             else
             {
-                Debug.Log("Player is in sight and in front of the enemy");
                 // Player is in front and visible to the enemy
                 idleState.canSeeThePlayer = true;
 

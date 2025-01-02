@@ -5,34 +5,45 @@ public class ActivateAttack : MonoBehaviour
     public Vector2 detectionSize = new Vector2(5f, 5f); // Size of the rectangle
     public Vector2 wallDetectionSize = new Vector2(2f, 1.5f);
     private Vector2 wallDetectionOffset = new Vector2(1f, 0f);
-    private Vector2 wallDetectionCenter;
+    public Vector2 wallDetectionCenter;
     public LayerMask targetLayer;
     public LayerMask wallLayer;
     public bool isInRange = false;
     public Transform target;
     public float chaseSpeed = 1f;
+    private bool drawGizmos = true;
 
     public ChaseState chaseState;
 
     public void Chase()
     {
-        wallDetectionCenter = new Vector2(transform.position.x + wallDetectionOffset.x, transform.position.y);
+        // Set iniial wall detection center
+        if (target.position.x > transform.position.x)
+        {
+            wallDetectionCenter = new Vector2(transform.position.x + wallDetectionOffset.x, transform.position.y);
+        }
+        else
+        {
+            wallDetectionCenter = new Vector2(transform.position.x - wallDetectionOffset.x, transform.position.y);
+        }
 
         // Check if there are any objects within the detection rectangle
         Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position, detectionSize, 0f, targetLayer);
         Collider2D[] wallHits = Physics2D.OverlapBoxAll(wallDetectionCenter, wallDetectionSize, 0f, wallLayer);
 
         // Update isInRange flag
-        isInRange = (hits.Length > 0 && wallHits.Length != 0);
+        isInRange = (hits.Length > 0 && wallHits.Length == 0);
 
         // Run script only if the object is outside the hit range
         if (!isInRange)
         {
+            drawGizmos = true;
             RunScript();
         }
         
         if(isInRange)
         {
+            drawGizmos = false;
             chaseState.isInAttackRange = true;
         }
     }
@@ -62,12 +73,15 @@ public class ActivateAttack : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        // Draw the detection rectangle in the editor for visualization
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position, detectionSize);
+        if(drawGizmos)
+        {
+            // Draw the detection rectangle in the editor for visualization
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(transform.position, detectionSize);
 
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(wallDetectionCenter, wallDetectionSize);
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireCube(wallDetectionCenter, wallDetectionSize);
+        }
     }
 
     void FaceRight()
