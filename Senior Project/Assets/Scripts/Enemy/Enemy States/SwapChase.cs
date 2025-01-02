@@ -5,7 +5,7 @@ public class SwapChase : MonoBehaviour
     public Vector2 detectionSize = new Vector2(5f, 5f); // Size of the rectangle
     public Vector2 wallDetectionSize = new Vector2(2f, 1.5f);
     private Vector2 wallDetectionOffset = new Vector2(1f, 0f);
-    public Vector2 wallDetectionCenter;
+    private Vector2 wallDetectionCenter;
     public LayerMask targetLayer;
     public LayerMask wallLayer;
     public bool inRange = false;
@@ -26,7 +26,7 @@ public class SwapChase : MonoBehaviour
         // Update isInRange flag
         inRange = (hits.Length > 0 && wallHits.Length == 0);
 
-        if(player.position.x > transform.position.x)
+        if (player.position.x > transform.position.x)
         {
             wallDetectionCenter = new Vector2(transform.position.x + wallDetectionOffset.x, transform.position.y);
         }
