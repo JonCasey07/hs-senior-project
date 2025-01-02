@@ -23,6 +23,13 @@ public class PlayerController : MonoBehaviour
     public float attackLength = .1f;
     public GameObject sword;
 
+    public bool facingRight = true;
+    public Vector2 wallDetectionSize = new Vector2(2.5f, 1.5f);
+    public Vector2 wallDetectionOffset = new Vector2(1.25f, 0f);
+    private Vector2 wallDetectionCenter;
+    public LayerMask wallLayer;
+    Collider2D[] wallHits;
+
     private void Awake()
     {
         playerControls = new PlayerInputActions();
@@ -44,8 +51,9 @@ public class PlayerController : MonoBehaviour
 
     private void Attack(InputAction.CallbackContext context)
     {
-        if(attackReady)
+        if(attackReady && wallHits.Length == 0)
         {
+            Debug.Log(wallHits);
             StartCoroutine(Attack());
         }
     }
@@ -74,6 +82,20 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         moveDirection = move.ReadValue<Vector2>();
+        if (moveDirection.x > 0)
+        {
+            facingRight = true;
+            wallDetectionCenter = new Vector2(transform.position.x + wallDetectionOffset.x, transform.position.y);
+            FaceRight();
+        }
+        if (moveDirection.x < 0)
+        {
+            facingRight = false;
+            wallDetectionCenter = new Vector2(transform.position.x - wallDetectionOffset.x, transform.position.y);
+            FaceLeft();
+        }
+
+        wallHits = Physics2D.OverlapBoxAll(wallDetectionCenter, wallDetectionSize, 0f, wallLayer);
     }
 
     void FixedUpdate()
@@ -107,5 +129,25 @@ public class PlayerController : MonoBehaviour
             attackReady = true;
             StopCoroutine(Attack());
         }
+    }
+
+    void FaceRight()
+    {
+        Vector3 scaler = transform.localScale;
+        scaler.x = 1.5f;
+        transform.localScale = scaler;
+    }
+
+    void FaceLeft()
+    {
+        Vector3 scaler = transform.localScale;
+        scaler.x = -1.5f;
+        transform.localScale = scaler;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(wallDetectionCenter, wallDetectionSize);
     }
 }
