@@ -3,6 +3,8 @@ using UnityEngine;
 public class PlayerDetection : MonoBehaviour
 {
     public Transform player; // Reference to the player's transform
+    public bool playerDetected = false; // Flag to indicate if the player is detected
+
     public LayerMask obstacleLayer; // LayerMask for obstacles (e.g., walls)
     public LayerMask groundLayer; // LayerMask for ground
     public Vector2 detectionRange = new Vector2(10f, 1.5f); // Size of the detection rectangle
@@ -33,7 +35,7 @@ public class PlayerDetection : MonoBehaviour
 
         // Check if the player is within the detection rectangle
         Collider2D[] hits = Physics2D.OverlapBoxAll(detectionCenter, detectionRange, 0f);
-        bool playerDetected = false;
+        playerDetected = false;
 
         foreach (var hit in hits)
         {
@@ -50,14 +52,14 @@ public class PlayerDetection : MonoBehaviour
             RaycastHit2D wallHit = Physics2D.Raycast(transform.position, directionToPlayer, distanceToPlayer, obstacleLayer);
             RaycastHit2D groundHit = Physics2D.Raycast(transform.position, directionToPlayer, distanceToPlayer, groundLayer);
 
-            if (wallHit.collider != null || groundHit.collider != null)
-            {
-                // Player is behind a wall
-            }
-            else
+            if (wallHit.collider == null && groundHit.collider == null)
             {
                 // Player is in front and visible to the enemy
                 idleState.canSeeThePlayer = true;
+            }
+            else
+            {
+                //Player is visible
 
             }
         }

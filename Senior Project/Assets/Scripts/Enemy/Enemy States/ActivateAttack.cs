@@ -3,14 +3,19 @@ using UnityEngine;
 public class ActivateAttack : MonoBehaviour
 {
     public Vector2 detectionSize = new Vector2(5f, 5f); // Size of the rectangle
+    public LayerMask targetLayer;
+    public Transform target;
+
     public Vector2 wallDetectionSize = new Vector2(2f, 1.5f);
     private Vector2 wallDetectionOffset = new Vector2(1f, 0f);
     public Vector2 wallDetectionCenter;
-    public LayerMask targetLayer;
     public LayerMask wallLayer;
+    public bool isColliding = false;
+    public Vector2 collsionNormal;
+
     public bool isInRange = false;
-    public Transform target;
     public float chaseSpeed = 1f;
+    public int direction = 0;
     private bool drawGizmos = true;
 
     public ChaseState chaseState;
@@ -57,17 +62,39 @@ public class ActivateAttack : MonoBehaviour
             Vector2 newPosition = new Vector2(target.position.x, transform.position.y);
 
             // Move towards the target on the x-axis
-            transform.position = Vector2.MoveTowards(transform.position, newPosition, chaseSpeed * Time.deltaTime);
+            if(!isColliding || (direction * collsionNormal.x) > 0) // Check if the object is not colliding with a wall or the collision normal is in the opposite direction
+            {
+                transform.position = Vector2.MoveTowards(transform.position, newPosition, chaseSpeed * Time.deltaTime);
+            }
             if (newPosition.x > transform.position.x)
             {
                 FaceRight();
+                direction = 1;
                 wallDetectionCenter = new Vector2(transform.position.x + wallDetectionOffset.x, transform.position.y);
             }
             if (newPosition.x < transform.position.x)
             {
                 FaceLeft();
+                direction = -1;
                 wallDetectionCenter = new Vector2(transform.position.x - wallDetectionOffset.x, transform.position.y);
             }
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Wall"))
+        {
+            isColliding = true;
+            collsionNormal = collision.GetContact(0).normal;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            isColliding = false;
         }
     }
 

@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     private InputAction move;
     public float moveSpeed = 5f;
     Vector2 moveDirection = Vector2.zero;
+    private bool isColliding = false;
+    private Vector2 collisionNormal;
 
     private InputAction jump;
     public float jumpForce = 10f;
@@ -53,7 +55,6 @@ public class PlayerController : MonoBehaviour
     {
         if(attackReady && wallHits.Length == 0)
         {
-            Debug.Log(wallHits);
             StartCoroutine(Attack());
         }
     }
@@ -100,15 +101,38 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(moveDirection.x * moveSpeed, rb.linearVelocity.y);
+        if(!isColliding || (moveDirection.x * collisionNormal.x) > 0 || collisionNormal.y != 0)
+        {
+            rb.linearVelocity = new Vector2(moveDirection.x * moveSpeed, rb.linearVelocity.y);
+        }
+        else
+        {
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+        }
+
     }
+
 
     void OnCollisionEnter2D(Collision2D collision) 
     { 
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Patrol"))
+        if (!collision.gameObject.CompareTag("Player"))
         {
             isGrounded = true; 
-        } 
+        }
+
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            isColliding = true;
+            collisionNormal = collision.GetContact(0).normal;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            isColliding = false;
+        }
     }
 
     IEnumerator Attack()
