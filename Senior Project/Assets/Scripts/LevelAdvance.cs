@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class LevelAdvance : MonoBehaviour
@@ -6,6 +7,7 @@ public class LevelAdvance : MonoBehaviour
     private Color newColor = Color.green;
     private Renderer rend;
 
+    public TMP_Text toWin;
     public GameObject levelEndScreen;
     public TutorialManager tutorialManager;
     private bool levelComplete = false;
@@ -18,6 +20,7 @@ public class LevelAdvance : MonoBehaviour
             rend = GetComponent<Renderer>();
             rend.material.color = newColor;
             levelComplete = true;
+            toWin.enabled = false;
         }
     }
 

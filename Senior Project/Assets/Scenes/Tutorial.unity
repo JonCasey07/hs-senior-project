@@ -1255,6 +1255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 708d03ef0d742a94b948df611a28a84f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toWin: {fileID: 186274874}
   levelEndScreen: {fileID: 283793507}
   tutorialManager: {fileID: 1516559310}
 --- !u!61 &543322141

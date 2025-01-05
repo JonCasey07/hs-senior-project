@@ -80,11 +80,13 @@ public class TutorialProgression : MonoBehaviour
                 move.enabled = false;
                 playerRb.constraints = RigidbodyConstraints2D.FreezeRotation;
                 jump.enabled = true;
+                playerController.isGrounded = true;
                 break;
             case 5:
                 jump.enabled = false;
                 win.enabled = true;
                 welcome.text = "That's it for the tutorial!";
+                step++;
                 break;
         }
         yield return new WaitForSeconds(3);
