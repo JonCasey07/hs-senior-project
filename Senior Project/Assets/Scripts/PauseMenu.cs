@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -39,11 +40,13 @@ public class PauseMenu : MonoBehaviour
     public void LoadMenu()
     {
         Debug.Log("Loading menu...");
+        //Time.timeScale = 1.0f;
     }
 
     public void QuitGame()
     {
         Debug.Log("Quitting game");
+        Application.Quit();
     }
     // 8:46 into video
 }
