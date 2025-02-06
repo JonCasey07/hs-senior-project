@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
 
     private void Attack(InputAction.CallbackContext context)
     {
-        if(attackReady && wallHits.Length == 0)
+        if(attackReady && wallHits.Length == 0 && !PauseMenu.isPaused)
         {
             StartCoroutine(Attack());
         }
