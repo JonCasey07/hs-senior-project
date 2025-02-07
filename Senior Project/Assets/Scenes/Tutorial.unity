@@ -2115,11 +2115,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1714139346}
-  offset: {x: 0, y: 0, z: 0}
   smoothSpeed: 1
-  leftBound: {fileID: 262639994}
-  rightBound: {fileID: 110060503}
-  fov: 15.9
+  leftBound: -7.429999
+  rightBound: 8.675025
 --- !u!1 &524562306
 GameObject:
   m_ObjectHideFlags: 0
