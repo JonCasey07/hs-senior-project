@@ -5,13 +5,14 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool isPaused = false;
 
-    public GameObject pauseMenuUI;
+    [SerializeField] GameObject pauseMenuUI;
+    
     public Animator anim;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && LevelAdvance.tutorialOver == false)
         {
             if (isPaused)
             {

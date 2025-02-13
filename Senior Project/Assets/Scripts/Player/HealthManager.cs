@@ -8,7 +8,7 @@ public class HealthManager : MonoBehaviour
     private int maxHealth = 100;
     private int currentHealth;
     private int posDead = 1920;
-    private int posFullHealth = 1520;
+    private int posFullHealth = 1450;
     private int posChange;
 
     void Start()
@@ -52,7 +52,7 @@ public class HealthManager : MonoBehaviour
     private void UpdateHealthBar()
     {
         float healthPercentageLost = 1-((float)currentHealth / maxHealth);
-        healthBar.anchoredPosition = new Vector2(0, 1005);
+        healthBar.anchoredPosition = new Vector2(0, 990);
         healthBar.anchoredPosition += new Vector2(healthPercentageLost*(posChange), 0);;
     }
 }
