@@ -34,7 +34,7 @@ public class TutorialManager : MonoBehaviour
 
     public void MainMenu()
     {
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void DisableControls()

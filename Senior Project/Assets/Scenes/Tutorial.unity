@@ -2058,7 +2058,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1714139346}
   smoothSpeed: 1
-  leftBound: -14.65
+  leftBound: -15.4
   rightBound: 16.81
 --- !u!1 &524562306
 GameObject:
