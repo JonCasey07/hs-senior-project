@@ -10,6 +10,11 @@ public class EventManager : MonoBehaviour
     public static EventManager level1;
 
 
+    void Start()
+    {
+        Screen.SetResolution(1920, 1080, true);
+    }
+
     private void Awake()
     {
         if (tutorial == null)

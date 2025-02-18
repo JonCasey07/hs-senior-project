@@ -14,6 +14,7 @@ public class TutorialProgression : MonoBehaviour
     public TMP_Text jump;
     public TMP_Text attack;
     public TMP_Text win;
+    public TMP_Text resolutions;
 
     private bool attackAble = false;
     public int step = 1;
@@ -67,6 +68,7 @@ public class TutorialProgression : MonoBehaviour
                 break;
             case 2:
                 welcome.text = "";
+                resolutions.text = Screen.width + " x " + Screen.height;
                 attack.enabled = true;
                 playerController.attackReady = true;
                 attackAble = true;
