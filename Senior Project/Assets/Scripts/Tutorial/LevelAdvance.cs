@@ -34,9 +34,12 @@ public class LevelAdvance : MonoBehaviour
         if (levelComplete)
         {
             levelEndScreen.SetActive(true);
-            EventManager.level++;
             EventManager.tutorial.CompleteLevel();
             EventManager.levelEnding = true;
+            if(EventManager.level==0)
+            {
+                EventManager.level = 1;
+            }
         }
     }
 }
