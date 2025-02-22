@@ -30,11 +30,13 @@ public class TutorialManager : MonoBehaviour
     public void NextLevel()
     {
         SceneManager.LoadScene("Level 1");
+        EventManager.levelEnding = false;
     }
 
     public void MainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+        EventManager.levelEnding = false;
     }
 
     public void DisableControls()

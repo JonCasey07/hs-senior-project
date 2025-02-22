@@ -10,8 +10,12 @@ public class LevelAdvance : MonoBehaviour
     public TMP_Text toWin;
     public GameObject levelEndScreen;
     public TutorialManager tutorialManager;
-    private bool levelComplete = false;
-    public static bool tutorialOver = false;
+    private bool levelComplete;
+
+    void Start()
+    {
+        levelComplete = false;
+    }
 
     // Update is called once per frame
     void Update()
@@ -30,8 +34,9 @@ public class LevelAdvance : MonoBehaviour
         if (levelComplete)
         {
             levelEndScreen.SetActive(true);
+            EventManager.level++;
             EventManager.tutorial.CompleteLevel();
-            tutorialOver = true;
+            EventManager.levelEnding = true;
         }
     }
 }

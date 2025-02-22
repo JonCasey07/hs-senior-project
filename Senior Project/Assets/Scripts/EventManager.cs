@@ -4,6 +4,9 @@ using System;
 
 public class EventManager : MonoBehaviour
 {
+    public static int level = 0;
+    public static bool levelEnding = false;
+
     public static EventManager tutorial;
     public event Action LevelComplete;
 
