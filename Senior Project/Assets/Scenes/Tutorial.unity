@@ -2154,7 +2154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toWin: {fileID: 186274874}
   levelEndScreen: {fileID: 283793507}
-  tutorialManager: {fileID: 1516559310}
+  levelManager: {fileID: 1516559310}
 --- !u!61 &543322141
 BoxCollider2D:
   m_ObjectHideFlags: 0

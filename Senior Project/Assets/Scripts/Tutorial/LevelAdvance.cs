@@ -9,7 +9,7 @@ public class LevelAdvance : MonoBehaviour
 
     public TMP_Text toWin;
     public GameObject levelEndScreen;
-    public TutorialManager tutorialManager;
+    public LevelManager levelManager;
     private bool levelComplete;
 
     void Start()
@@ -20,7 +20,7 @@ public class LevelAdvance : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (tutorialManager.enemyCount == 0)
+        if (levelManager.enemyCount == 0)
         {
             rend = GetComponent<Renderer>();
             rend.material.color = newColor;
@@ -34,11 +34,12 @@ public class LevelAdvance : MonoBehaviour
         if (levelComplete)
         {
             levelEndScreen.SetActive(true);
-            EventManager.tutorial.CompleteLevel();
+            EventManager.genEvents.CompleteTutLevel();
             EventManager.levelEnding = true;
             if(EventManager.level==0)
             {
                 EventManager.level = 1;
+                EventManager.SaveGame();
             }
         }
     }

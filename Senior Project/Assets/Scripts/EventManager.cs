@@ -7,7 +7,7 @@ public class EventManager : MonoBehaviour
     public static int level = 0;
     public static bool levelEnding = false;
 
-    public static EventManager tutorial;
+    public static EventManager genEvents;
     public event Action LevelComplete;
 
     public static EventManager level1;
@@ -20,9 +20,9 @@ public class EventManager : MonoBehaviour
 
     private void Awake()
     {
-        if (tutorial == null)
+        if (genEvents == null)
         {
-            tutorial = this;
+            genEvents = this;
         }
         else
         {
@@ -31,9 +31,14 @@ public class EventManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void CompleteLevel()
+    public void CompleteTutLevel()
     {
         LevelComplete?.Invoke();
+    }
+
+    public static void SaveGame()
+    {
+        PlayerPrefs.SetInt("level", level);
     }
 
 }

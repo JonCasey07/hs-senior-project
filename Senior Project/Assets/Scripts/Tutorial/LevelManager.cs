@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class TutorialManager : MonoBehaviour
+public class LevelManager : MonoBehaviour
 {
     public int enemyCount;
     private int patrolCount = 0;
@@ -17,7 +17,7 @@ public class TutorialManager : MonoBehaviour
         patrolCount = GameObject.FindGameObjectsWithTag("Patrol").Length;
         enemyCount = patrolCount;
 
-        EventManager.tutorial.LevelComplete += DisableControls;
+        EventManager.genEvents.LevelComplete += DisableControls;
     }
 
     // Update is called once per frame
@@ -29,7 +29,7 @@ public class TutorialManager : MonoBehaviour
 
     public void NextLevel()
     {
-        SceneManager.LoadScene("Level 1");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         EventManager.levelEnding = false;
     }
 
@@ -47,6 +47,6 @@ public class TutorialManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        EventManager.tutorial.LevelComplete -= DisableControls;
+        EventManager.genEvents.LevelComplete -= DisableControls;
     }
 }
