@@ -2149,7 +2149,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 543322138}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 708d03ef0d742a94b948df611a28a84f, type: 3}
+  m_Script: {fileID: 11500000, guid: 63e9ce7292cfd3442838c8120ccff51b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   toWin: {fileID: 186274874}
@@ -2435,11 +2435,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 877600476}
-  - {fileID: 1025383233}
   - {fileID: 937521654}
   - {fileID: 715796555}
   - {fileID: 1792687139}
   - {fileID: 186274876}
+  - {fileID: 1025383233}
   m_Father: {fileID: 946093285}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4851,8 +4851,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1516559312}
-  - component: {fileID: 1516559311}
   - component: {fileID: 1516559310}
+  - component: {fileID: 1516559313}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -4869,35 +4869,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1516559309}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3986bc474196964ba23e5f44aef17cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 4269efdd292abe0489718a3ac47077d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyCount: 0
   playerRb: {fileID: 1714139343}
   playerController: {fileID: 1714139347}
   playerTransform: {fileID: 1714139346}
---- !u!114 &1516559311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1516559309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c31935c81078744b87049aa612412a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerRb: {fileID: 1714139343}
-  playerController: {fileID: 1714139347}
-  playerTransform: {fileID: 1714139346}
-  welcome: {fileID: 877600477}
-  move: {fileID: 937521655}
-  jump: {fileID: 715796556}
-  attack: {fileID: 1792687140}
-  win: {fileID: 186274874}
-  resolutions: {fileID: 1025383234}
-  step: 1
 --- !u!4 &1516559312
 Transform:
   m_ObjectHideFlags: 0
@@ -4914,6 +4892,28 @@ Transform:
   - {fileID: 946093285}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1516559313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1516559309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c085b46dfeab4334ba98396533d791e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerRb: {fileID: 1714139343}
+  playerController: {fileID: 1714139347}
+  playerTransform: {fileID: 1714139346}
+  welcome: {fileID: 877600477}
+  move: {fileID: 937521655}
+  jump: {fileID: 715796556}
+  attack: {fileID: 1792687140}
+  win: {fileID: 186274874}
+  resolutions: {fileID: 1025383234}
+  step: 1
 --- !u!1 &1558690255
 GameObject:
   m_ObjectHideFlags: 0
