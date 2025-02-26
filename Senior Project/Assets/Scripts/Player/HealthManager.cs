@@ -1,20 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
 {
-    public RectTransform healthBar;
+    public Slider healthBar;
     private int maxHealth = 100;
     private int currentHealth;
-    private int posDead = 1920;
-    private int posFullHealth = 1450;
-    private int posChange;
 
     void Start()
     {
         currentHealth = maxHealth;
-        posChange = posFullHealth-posDead;
+        healthBar.value = currentHealth;
     }
 
     void Update()
@@ -22,13 +20,6 @@ public class HealthManager : MonoBehaviour
         //testDamage();
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            TakeDamage(10); 
-        }
-    }
     /*
     void testDamage()
     {
@@ -51,8 +42,6 @@ public class HealthManager : MonoBehaviour
 
     private void UpdateHealthBar()
     {
-        float healthPercentageLost = 1-((float)currentHealth / maxHealth);
-        healthBar.anchoredPosition = new Vector2(0, 990);
-        healthBar.anchoredPosition += new Vector2(healthPercentageLost*(posChange), 0);;
+        healthBar.value = currentHealth;
     }
 }

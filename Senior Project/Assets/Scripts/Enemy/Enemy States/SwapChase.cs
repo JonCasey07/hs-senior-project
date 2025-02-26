@@ -28,10 +28,12 @@ public class SwapChase : MonoBehaviour
 
         if (player.position.x > transform.position.x)
         {
+            FaceRight();
             wallDetectionCenter = new Vector2(transform.position.x + wallDetectionOffset.x, transform.position.y);
         }
         else
         {
+            FaceLeft();
             wallDetectionCenter = new Vector2(transform.position.x - wallDetectionOffset.x, transform.position.y);
         }
 
@@ -65,6 +67,20 @@ public class SwapChase : MonoBehaviour
             Gizmos.color = Color.blue;
             Gizmos.DrawWireCube(wallDetectionCenter, wallDetectionSize);
         }
+    }
+
+    void FaceRight()
+    {
+        Vector3 scaler = transform.localScale;
+        scaler.x = 1.5f;
+        transform.localScale = scaler;
+    }
+
+    void FaceLeft()
+    {
+        Vector3 scaler = transform.localScale;
+        scaler.x = -1.5f;
+        transform.localScale = scaler;
     }
 
 }
