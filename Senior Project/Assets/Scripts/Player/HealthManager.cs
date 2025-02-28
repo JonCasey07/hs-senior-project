@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class HealthManager : MonoBehaviour
 {
     public Slider healthBar;
+    public GameObject deathScreen;
     private int maxHealth = 100;
     private int currentHealth;
 
@@ -17,6 +18,10 @@ public class HealthManager : MonoBehaviour
 
     void Update()
     {
+        if(currentHealth == 0)
+        {
+            Die();
+        }
         //testDamage();
     }
 
@@ -43,5 +48,12 @@ public class HealthManager : MonoBehaviour
     private void UpdateHealthBar()
     {
         healthBar.value = currentHealth;
+    }
+
+    void Die()
+    {
+        Destroy(this);
+        Time.timeScale = 0f;
+        deathScreen.SetActive(true);
     }
 }
