@@ -1,9 +1,9 @@
 {
   "dependencies": {
     "com.nobi.roundedcorners": {
-      "version": "file:C:/Users/5278354/Downloads/Unity-UI-Rounded-Corners",
+      "version": "file:Unity-UI-Rounded-Corners",
       "depth": 0,
-      "source": "local",
+      "source": "embedded",
       "dependencies": {}
     },
     "com.unity.2d.animation": {

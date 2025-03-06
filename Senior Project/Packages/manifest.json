@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "com.nobi.roundedcorners": "file:C:/Users/5278354/Downloads/Unity-UI-Rounded-Corners",
     "com.unity.collab-proxy": "2.6.0",
     "com.unity.feature.2d": "2.0.1",
     "com.unity.ide.rider": "3.0.31",
