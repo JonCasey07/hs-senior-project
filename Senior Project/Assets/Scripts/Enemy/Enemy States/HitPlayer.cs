@@ -7,7 +7,7 @@ public class HitPlayer : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            healthManager.TakeDamage(10);
+            healthManager.TakeDamage(20);
         }
     }
 }

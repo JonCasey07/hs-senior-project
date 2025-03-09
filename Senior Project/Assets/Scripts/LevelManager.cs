@@ -33,6 +33,12 @@ public class LevelManager : MonoBehaviour
         EventManager.levelEnding = false;
     }
 
+    public void RetryLevel()
+    {
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void MainMenu()
     {
         SceneManager.LoadScene("MainMenu");
