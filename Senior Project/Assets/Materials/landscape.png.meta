@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 172287cca1b91ee499c7efd5f5d66738
+guid: 9468a04e1f302cd438474479b01571fb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4565277893826926653
-    second: GameIcon_0
+      213: -5981993798188634692
+    second: landscape_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GameIcon_0
+      name: landscape_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 128
+        width: 640
+        height: 360
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3c7a08581ffd4a0c0800000000000000
-      internalID: -4565277893826926653
+      spriteID: cbd6062a550bbfca0800000000000000
+      internalID: -5981993798188634692
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      GameIcon_0: -4565277893826926653
+      landscape_0: -5981993798188634692
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
