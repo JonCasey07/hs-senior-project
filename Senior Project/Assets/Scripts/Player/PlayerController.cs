@@ -141,14 +141,14 @@ public class PlayerController : MonoBehaviour
     void FaceRight()
     {
         Vector3 scaler = transform.localScale;
-        scaler.x = 1.5f;
+        scaler.x = 5.117683f;
         transform.localScale = scaler;
     }
 
     void FaceLeft()
     {
         Vector3 scaler = transform.localScale;
-        scaler.x = -1.5f;
+        scaler.x = -5.117683f;
         transform.localScale = scaler;
     }
 
